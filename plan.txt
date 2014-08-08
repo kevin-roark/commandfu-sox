@@ -62,14 +62,14 @@ I could keep going and going, but here is a pitch shift:
 
   sox future.mp3 -d
 
-  sox future.mp3 -d pitch 1000
+  sox honest.mp3 -d pitch 1000
 
   sox future.mp3 -d pitch -1000
 
 
 YOU CAN COMEBINE ALL OF THESE THINGS. IT CAN BE REALLY FUN TOY.
 
-  sox future.mp3 -d pitch 1000 gain -n 10 bass +5 speed 0.5
+  sox honest.mp3 -d pitch 1000 gain -n 10 bass +5 speed 0.5
 
 
 YOU CAN ALSO ANALYZE THE audio (imagine piping this into a text file lol):
