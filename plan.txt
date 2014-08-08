@@ -1,0 +1,85 @@
+SoX is a command-line audio processing tool good for quickies and batch tasks. It is based on libSox, which audacity (the GUI)
+may or may not be related to. You can use it on its own to do neat things, or you can hook it in to other programming languages
+(which I won't get into, but you can see here:https://github.com/kevin-roark/arthur).
+
+Play some musics:
+  sox club.mp3 -d
+
+Record some musics:
+  sox -d bang.mp3
+
+-d is just a shorthand for a device. You can use it in place of any
+filename and do any of the other commands.
+
+
+SOX IS ON SOURCEFORGE SO YOU KNOW IT IS LEGIT.
+
+Concatenate some musics:
+
+  sox glass.mp3 bang.mp3 glassbang.mp3
+
+Mix some musics:
+  sox -m glass.mp3 bang.mp3 gblasng.mp3
+
+Boost the bass on gblasng.mp3 as we play it:
+
+  sox gblasng.mp3 -d bass +5
+
+
+LIKE ALL NICE COMMAND LINE THINGS, YOU LEARN SIMPLE COMMANDS AND CAN COMPOSE
+THIM TOGETHER IN A COOL WAY. I'M TALKING PIPES
+
+Boost the bass on gblasng.mp3, pipe it into something that slows it down:
+
+  sox "|sox gblasng.mp3 -p bass +5" -d speed 0.25
+
+Of course, the use case for piping is sort of moot cause you can also do this:
+
+  sox gblasng.mp3 -d bass +5 speed 0.25
+
+
+SOME OTHER NEAT COMMANDS?!?! YOU WANT EM? I GOT EM?
+
+Band-pass filter:
+
+  sox club.mp3 -d band 3 100
+
+Chorus is nuts:
+  // this is gain-in, gain-out, delay, decay, speed, depth (sin, triangle)
+  sox future.mp3 -d 0.5 0.9 50 0.4 0.25 2 −t 60 0.32 0.4 2.3 −t 40 0.3 0.3 1.3 −s
+
+Audio contrast? hi zach:
+  sox glass.mp3 -d
+  sox glass.mp3 -d contrast 100
+
+ECHO ECHO:
+  sox club.mp3 -d 0.8 0.88 800 0.4
+
+make it real loud:
+  sox club.mp3 -d gain -n 10
+
+I could keep going and going, but here is a pitch shift:
+
+  sox future.mp3 -d
+
+  sox future.mp3 -d pitch 1000
+
+  sox future.mp3 -d pitch -1000
+
+
+YOU CAN COMEBINE ALL OF THESE THINGS. IT CAN BE REALLY FUN TOY.
+
+  sox future.mp3 -d pitch 1000 gain -n 10 bass +5 speed 0.5
+
+
+YOU CAN ALSO ANALYZE THE audio (imagine piping this into a text file lol):
+
+  sox future.mp3 -n stat
+
+
+OTHER TOOLS EXIST BUT I REALLY LIKE SOX. FFMPEG CAN DO SOME SIMILAR THINGS
+WITH BOTH AUDIO AND VIDEO BUT THAT IS A DIFFERENT TALK.
+
+ADDENDUM IF TIME:
+
+https://github.com/kevin-roark/spyr
